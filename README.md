@@ -44,7 +44,7 @@ sigemptyset(&action.sa_mask);
 sigaction(SIGCHLD, &action, NULL);
 ```
 
-This is equivalent to:
+This is equivalent to the venerable
 
 ```c
 signal(SIGCHLD, SIG_IGN);
@@ -77,6 +77,8 @@ static void handler(int signum)
         ;
 }
 ```
+
+This is the most portable way to clean up zombie processes.
 
 # Results
 

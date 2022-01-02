@@ -1,7 +1,7 @@
 /**
  * @file zombie1.c
  *
- * Handle zombie processes from fork() using SIG_IGN.
+ * Handle zombie processes using SIG_IGN.
  */
 
 #include <signal.h>

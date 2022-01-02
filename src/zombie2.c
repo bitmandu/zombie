@@ -1,7 +1,7 @@
 /**
  * @file zombie2.c
  *
- * Handle zombie processes from fork() using SIG_NOCLDWAIT flag.
+ * Handle zombie processes using SIG_NOCLDWAIT flag.
  */
 
 #include <signal.h>

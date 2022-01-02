@@ -1,7 +1,7 @@
 /**
  * @file zombie3.c
  *
- * Handle zombie processes from fork() using waitpid().
+ * Handle zombie processes using waitpid().
  */
 
 #include <sys/wait.h>
