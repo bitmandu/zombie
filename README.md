@@ -19,22 +19,22 @@ own system, please share them.
 
 # Usage
 
-	$ meson build
-	$ cd build
-	$ ninja test
-	[2/3] Running all tests.
-	1/3 test_zombie1        OK              1.01s
-	2/3 test_zombie2        OK              1.01s
-	3/3 test_zombie3        OK              1.01s
+    $ meson build
+    $ cd build
+    $ ninja test
+    [2/3] Running all tests.
+    1/3 test_zombie1        OK              1.01s
+    2/3 test_zombie2        OK              1.01s
+    3/3 test_zombie3        OK              1.01s
 
-	OK:                 3
-	Expected Fail:      0
-	Fail:               0
-	Unexpected Pass:    0
-	Skipped:            0
-	Timeout:            0
+    OK:                 3
+    Expected Fail:      0
+    Fail:               0
+    Unexpected Pass:    0
+    Skipped:            0
+    Timeout:            0
 
-	Full log written to /home/kris/c/zombie/build/meson-logs/testlog.txt
+    Full log written to /home/kris/c/zombie/build/meson-logs/testlog.txt
 
 # Method 1: Ignore `SIGCHLD`
 
@@ -66,11 +66,13 @@ sigemptyset(&action.sa_mask);
 sigaction(SIGCHLD, &action, NULL);
 ```
 
-with the signal handler:
+with the signal handler
 
 ```c
 static void handler(int signum)
 {
+    pid_t pid;
+
     while ((pid = waitpid(-1, NULL, WNOHANG)) > 0)
         ;
 }

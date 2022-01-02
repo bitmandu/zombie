@@ -1,7 +1,7 @@
 /**
  * @file memory.c
  *
- * Shared memory.
+ * Shared memory allocation.
  */
 
 #include <sys/mman.h>
@@ -11,14 +11,13 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-#define SHM_NAME "/zombie"
-
 void *memory_alloc(size_t size)
 {
     int fd;
+    const char name[] = "/zombie";
     void *addr = MAP_FAILED;
 
-    if ((fd = shm_open(SHM_NAME, O_RDWR | O_CREAT, S_IRUSR | S_IWUSR)) == -1) {
+    if ((fd = shm_open(name, O_RDWR | O_CREAT, S_IRUSR | S_IWUSR)) == -1) {
         perror("shm_open");
         goto error;
     }
@@ -31,7 +30,7 @@ void *memory_alloc(size_t size)
     addr = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
 
 error_shm:
-    if (shm_unlink(SHM_NAME) == -1)
+    if (shm_unlink(name) == -1)
         perror("shm_unlink");
 error:
     return addr;
